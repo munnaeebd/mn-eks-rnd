@@ -6,8 +6,8 @@ module "eks-cluster" {
   #security_groups = [aws_security_group.eks-master.id]
   tags                               = merge(tomap({"Name" = join("-", [local.env, local.project, "eks-cluster"])}), tomap({"ResourceType" = "EKS-cluster-resource"}), local.common_tags)
   eks-version                        = local.eks-version
-  vpc_id                             = "vpc-38e7c95f"
-  vpc-cidr-block                     = "172.31.0.0/16"
+  vpc_id                             = "vpc-0194d1b660005a311"
+  vpc-cidr-block                     = "10.144.160.0/20"
   worker_node_role_arn               = module.eks-iam.aws_iam_role_arn
   ondemand_desired_size              = local.eks_ondemand_desired_size
   ondemand_max_size                  = local.eks_ondemand_max_size
