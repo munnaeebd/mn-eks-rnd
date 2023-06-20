@@ -1,5 +1,5 @@
 module "eks-cluster" {
-  source                             = "tf-modules/eks"
+  source                             = "./tf-modules/eks"
   env                                = local.env
   project                            = local.project
   subnet-ids                         = ["subnet-97cbc8de", "subnet-aea0b3c9", "subnet-9631ffcf"]
