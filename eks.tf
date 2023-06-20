@@ -2,7 +2,7 @@ module "eks-cluster" {
   source                             = "./tf-modules/eks"
   env                                = local.env
   project                            = local.project
-  subnet-ids                         = ["subnet-97cbc8de", "subnet-aea0b3c9", "subnet-9631ffcf"]
+  subnet-ids                         = ["subnet-033e1d9428f91f483", "subnet-04ebd429464000948"]
   #security_groups = [aws_security_group.eks-master.id]
   tags                               = merge(tomap({"Name" = join("-", [local.env, local.project, "eks-cluster"])}), tomap({"ResourceType" = "EKS-cluster-resource"}), local.common_tags)
   eks-version                        = local.eks-version
