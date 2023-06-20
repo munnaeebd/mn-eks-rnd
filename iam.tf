@@ -1,5 +1,5 @@
 module "eks-iam" {
-  source = "../tf-modules/iam"
+  source = "tf-modules/iam"
   name   = "${local.env}-${local.project}-worker"
   policies = {
     EKSDefaultPolicy            = aws_iam_policy.k8s-default-policy.arn
