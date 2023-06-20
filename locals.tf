@@ -1,6 +1,7 @@
 locals {
 
-  env         = terraform.workspace
+  #env         = terraform.workspace
+  env         = "uat"
   owner       = "SE"
   cost-center = "munna"
   project     = "munna-rnd"

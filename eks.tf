@@ -76,26 +76,26 @@ BASH
   }
 }
 
-# EKS IRSA 
-module "iam_iam-role-for-service-accounts-eks" {
-  source                             = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version                            = "5.20.0"
-  role_name                          = "${local.env}_${local.project}_karpenter_controller_EKS"
-  role_policy_arns = {
-    policy = aws_iam_policy.karpenter_controller_policy.arn
-  }
-  attach_karpenter_controller_policy = true
+# # EKS IRSA 
+# module "iam_iam-role-for-service-accounts-eks" {
+#   source                             = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+#   version                            = "5.20.0"
+#   role_name                          = "${local.env}_${local.project}_karpenter_controller_EKS"
+#   role_policy_arns = {
+#     policy = aws_iam_policy.karpenter_controller_policy.arn
+#   }
+#   attach_karpenter_controller_policy = true
 
-  karpenter_controller_cluster_name  = module.eks-cluster.cluster_name
-  karpenter_controller_node_iam_role_arns = [module.eks-iam.aws_iam_role_arn]
+#   karpenter_controller_cluster_name  = module.eks-cluster.cluster_name
+#   karpenter_controller_node_iam_role_arns = [module.eks-iam.aws_iam_role_arn]
 
-  attach_vpc_cni_policy = true
-  vpc_cni_enable_ipv4   = true
+#   attach_vpc_cni_policy = true
+#   vpc_cni_enable_ipv4   = true
 
-  oidc_providers = {
-    main = {
-      provider_arn               = module.eks-cluster.openID_connect_arn
-      namespace_service_accounts = ["karpenter:karpenter"]
-    }
-  }
-}
+#   oidc_providers = {
+#     main = {
+#       provider_arn               = module.eks-cluster.openID_connect_arn
+#       namespace_service_accounts = ["karpenter:karpenter"]
+#     }
+#   }
+# }
