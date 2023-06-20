@@ -24,7 +24,12 @@ locals {
     prod = "1.23"
   }
   eks-version = local.tf_eks-version[local.env]
-
+  tf_eks_ondemand_desired_size = {
+    uat  = "0"
+    prod = "0"
+    sb   = "0"
+    lt   = "0"
+  }
   eks_ondemand_desired_size = local.tf_eks_ondemand_desired_size[local.env]
   tf_eks_ondemand_min_size = {
     uat  = "0"
