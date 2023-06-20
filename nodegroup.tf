@@ -22,7 +22,7 @@
 #     max_unavailable = 1
 #   }
 # }
-
+env = "uat"
 # node group of spot workers
 resource "aws_eks_node_group" "spot_node_group" {
   count           = var.env == "uat" ? 1 : 0
