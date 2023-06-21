@@ -38,29 +38,38 @@ CONFIGMAPAWSAUTH
 apiVersion: v1
 clusters:
 - cluster:
-    server: ${module.eks-cluster.eks_endpoint}
     certificate-authority-data: ${module.eks-cluster.eks_certificate_authority.0.data}
-  name: kubernetes
+    server: ${module.eks-cluster.eks_endpoint}
+  name: ${module.eks-cluster.arn}
 contexts:
 - context:
-    cluster: kubernetes
-    user: aws
-  name: aws
-current-context: aws
+    cluster: ${module.eks-cluster.arn}
+    user: ${module.eks-cluster.arn}
+  name: ${module.eks-cluster.arn}
+current-context: ${module.eks-cluster.arn}
 kind: Config
 preferences: {}
 users:
-- name: aws
+- name: ${module.eks-cluster.arn}
   user:
     exec:
-      apiVersion: client.authentication.k8s.io/v1alpha1
-      command: aws-iam-authenticator
+      apiVersion: client.authentication.k8s.io/v1beta1
       args:
-        - "token"
-        - "-i"
-        - "${module.eks-cluster.cluster_name}"
+      - --region
+      - ap-southeast-1
+      - eks
+      - get-token
+      - --cluster-name
+      - "${module.eks-cluster.cluster_name}"
+      - --output
+      - json
+      command: aws
 KUBECONFIG
 }
+
+
+
+
 
 resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
