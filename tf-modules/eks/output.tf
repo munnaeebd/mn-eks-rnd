@@ -4,6 +4,9 @@ output "eks_endpoint" {
 output "eks_arn" {
   value = aws_eks_cluster.eks.arn
 }
+output "eks_arn" {
+  value = aws_eks_cluster.eks.arn
+}
 output "eks_certificate_authority" {
   value = aws_eks_cluster.eks.certificate_authority
 }
@@ -12,5 +15,9 @@ output "cluster_name" {
 }
 output "openID_connect_arn" {
   value = aws_iam_openid_connect_provider.example.arn
+}
+
+output "eks_identity" {
+  value = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
