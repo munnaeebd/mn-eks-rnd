@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "eks" {
   }
   enabled_cluster_log_types = ["api", "audit"]
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
