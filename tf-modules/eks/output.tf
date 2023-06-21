@@ -1,6 +1,9 @@
 output "eks_endpoint" {
   value = aws_eks_cluster.eks.endpoint
 }
+output "eks_arn" {
+  value = aws_eks_cluster.eks.arn
+}
 output "eks_certificate_authority" {
   value = aws_eks_cluster.eks.certificate_authority
 }

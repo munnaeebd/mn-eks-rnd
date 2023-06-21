@@ -40,17 +40,17 @@ clusters:
 - cluster:
     certificate-authority-data: ${module.eks-cluster.eks_certificate_authority.0.data}
     server: ${module.eks-cluster.eks_endpoint}
-  name: ${module.eks-cluster.arn}
+  name: ${module.eks-cluster.eks_arn}
 contexts:
 - context:
-    cluster: ${module.eks-cluster.arn}
-    user: ${module.eks-cluster.arn}
-  name: ${module.eks-cluster.arn}
-current-context: ${module.eks-cluster.arn}
+    cluster: ${module.eks-cluster.eks_arn}
+    user: ${module.eks-cluster.eks_arn}
+  name: ${module.eks-cluster.eks_arn}
+current-context: ${module.eks-cluster.eks_arn}
 kind: Config
 preferences: {}
 users:
-- name: ${module.eks-cluster.arn}
+- name: ${module.eks-cluster.eks_arn}
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1beta1
