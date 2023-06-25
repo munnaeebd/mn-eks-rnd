@@ -46,13 +46,13 @@ resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
   role       = aws_iam_role.eks-role.name
 }
 # fetch eks openID connect provider issuer url
-data "tls_certificate" "example" {
-  url = aws_eks_cluster.eks.identity[0].oidc[0].issuer
-}
-# create openID connect provider
-resource "aws_iam_openid_connect_provider" "example" {
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.example.certificates[0].sha1_fingerprint]
-  url             = aws_eks_cluster.eks.identity[0].oidc[0].issuer
-}
+# data "tls_certificate" "example" {
+#   url = aws_eks_cluster.eks.identity[0].oidc[0].issuer
+# }
+# # create openID connect provider
+# resource "aws_iam_openid_connect_provider" "example" {
+#   client_id_list  = ["sts.amazonaws.com"]
+#   thumbprint_list = [data.tls_certificate.example.certificates[0].sha1_fingerprint]
+#   url             = aws_eks_cluster.eks.identity[0].oidc[0].issuer
+# }
 
