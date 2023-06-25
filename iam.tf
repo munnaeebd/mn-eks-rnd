@@ -3,11 +3,7 @@ module "eks-iam" {
   name   = "${local.env}-${local.project}-worker"
   policies = {
     EKSDefaultPolicy            = aws_iam_policy.k8s-default-policy.arn
-    AWSRoute53FullAccess        = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-    AmazonEC2FullAccess         = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
     AmazonSSMFullAccess         = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
-    AmazonDynamoDBAccess        = aws_iam_policy.k8s-dynamodb-policy.arn
-    AmazonS3Access              = aws_iam_policy.k8s-s3-policy.arn
     EKSWorkerPolicy             = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
     ECRReadOnly                 = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
     EKSCNIPolicy                = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
