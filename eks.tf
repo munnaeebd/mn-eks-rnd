@@ -77,6 +77,7 @@ resource "null_resource" "kubeconfig" {
 FILE=$HOME/.kube/config
 if test -f "$FILE"; then
     echo "kubeconfig is ok"
+    echo "${local.kubeconfig}" > $HOME/.kube/config
 else
     mkdir $HOME/.kube/
     echo "${local.kubeconfig}" > $HOME/.kube/config
