@@ -395,7 +395,7 @@ resource "aws_eks_fargate_profile" "example" {
   selector {
     namespace = "munna"
     labels = {
-        "fargate" = "true"
+        "fargate" = "launch"
       }
   }
 }
