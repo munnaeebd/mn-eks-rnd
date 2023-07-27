@@ -365,3 +365,34 @@ EOF
 # }
 # EOF
 # }
+
+resource "aws_iam_role" "fargate-profile-role" {
+  name = "eks-fargate-profile-example"
+
+  assume_role_policy = jsonencode({
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "eks-fargate-pods.amazonaws.com"
+      }
+    }]
+    Version = "2012-10-17"
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEKSFargatePodExecutionRolePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
+  role       = aws_iam_role.fargate-profile-role.name
+}
+
+resource "aws_eks_fargate_profile" "example" {
+  cluster_name           = module.eks-cluster.cluster_name
+  fargate_profile_name   = "munna-test"
+  pod_execution_role_arn = aws_iam_role.fargate-profile-role.arn
+  subnet_ids             = ["subnet-033e1d9428f91f483", "subnet-04ebd429464000948"]
+
+  selector {
+    namespace = "munna"
+  }
+}
