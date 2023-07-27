@@ -396,3 +396,5 @@ resource "aws_eks_fargate_profile" "example" {
     namespace = "munna"
   }
 }
+
+#test
