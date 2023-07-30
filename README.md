@@ -19,5 +19,12 @@ Create Role--> edit the newly  created role-->go to the "Trust relationships" ta
 Then Create service account and required pod with the new service account. This pod should access the AWS services allowed in the IAM policies. 
 ```
 
+## AWS Load Balancer integration
+
+```
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
+cd aws-lb-controller
+kubectl apply -f my-service-account.yaml -f v2_5_0_full.yaml
+```
 
 (C) 2023
